@@ -17,6 +17,7 @@ const App = () => {
   }, [count]);
 
   const remainingAttempts = maxCount + count;
+  const [hasWon, setHasWon] = useState(false);
 
   const handleGuess = (value) => {
     const guessNum = parseInt(value);
@@ -24,6 +25,7 @@ const App = () => {
     if (count < maxCount) {
       if (guessNum === secretNumber) {
         setMessage('Congratulations! You guessed it right!');
+        setHasWon(true);
 
       }else {
         setMessage(`You Guess Too low. Try again!`);
@@ -35,12 +37,13 @@ const App = () => {
     setSecretNumber(Math.floor(Math.random() * 20) + 1);
     setMessage('');
     setCount(0);
+    setHasWon(false);
   };
 
   return (
     <>
     <Header />
-    <div className="container">
+    <div className={`container ${hasWon ? 'win' : ''}`}>
       <div className="card">
         <div className="content">
           <NumberInput onSubmit={handleGuess} />
