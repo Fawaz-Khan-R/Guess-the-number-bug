@@ -5,7 +5,7 @@ import ResultMessage from './components/ResultMessage';
 import Button from './components/Button';
 import './App.css';
 const App = () => {
-  const [secretNumber, setSecretNumber] = useState(8);
+  const [secretNumber, setSecretNumber] = useState(Math.floor(Math.random() * 20) + 1);
   const [message, setMessage] = useState('');
   const [count, setCount] = useState(0);
   const maxCount = 5;
