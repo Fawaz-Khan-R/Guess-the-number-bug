@@ -16,7 +16,7 @@ const App = () => {
     }
   }, [count]);
 
-  const remainingAttempts = maxCount + count;
+  const remainingAttempts = maxCount - count;
   const [hasWon, setHasWon] = useState(false);
 
   const handleGuess = (value) => {
@@ -48,8 +48,8 @@ const App = () => {
         <div className="content">
           <NumberInput onSubmit={handleGuess} />
           <ResultMessage message={message} />
-          {count === maxCount && (
-            <Button onClick={resetGame} text="Restart Game" />
+          { (hasWon && remainingAttempts === 0) || count === maxCount && (
+              <Button onClick={resetGame} text="Restart Game" />
           )}
         </div>
         <div className="attempts">
