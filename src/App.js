@@ -27,7 +27,11 @@ const App = () => {
         setMessage('Congratulations! You guessed it right!');
         setHasWon(true);
 
-      }else {
+      }
+      else if (guessNum > secretNumber){
+        setMessage('Your guess is too high. Try again!'); 
+      }
+      else {
         setMessage(`You Guess Too low. Try again!`);
       }
     }
@@ -48,9 +52,9 @@ const App = () => {
         <div className="content">
           <NumberInput onSubmit={handleGuess} />
           <ResultMessage message={message} />
-          { (hasWon && remainingAttempts === 0) || count === maxCount && (
-              <Button onClick={resetGame} text="Restart Game" />
-          )}
+          { hasWon  || count === maxCount && (
+  <Button onClick={resetGame} text="Restart Game" />
+)}
         </div>
         <div className="attempts">
           <p>Remaining attempts: {remainingAttempts}</p>
