@@ -13,6 +13,7 @@ const App = () => {
   useEffect(() => {
     if (count === maxCount) {
       setMessage('You have reached the maximum number of guesses!');
+      setHasWon(false);
     }
   }, [count]);
 
@@ -52,9 +53,9 @@ const App = () => {
         <div className="content">
           <NumberInput onSubmit={handleGuess} />
           <ResultMessage message={message} />
-          { hasWon  || count === maxCount && (
-  <Button onClick={resetGame} text="Restart Game" />
-)}
+          {(count === maxCount || hasWon) && (
+             <Button onClick={resetGame} text="Restart Game" />
+           )}
         </div>
         <div className="attempts">
           <p>Remaining attempts: {remainingAttempts}</p>
