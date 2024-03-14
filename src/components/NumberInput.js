@@ -9,9 +9,15 @@ const NumberInput = ({ onSubmit }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSubmit(guess);
-    setGuess('');
+  
+    if (guess && !isNaN(guess)) {
+      onSubmit(guess);
+      setGuess('');
+    } else {
+      alert("Please enter a valid number.");
+    }
   };
+  
 
   return (
     <form onSubmit={handleSubmit}>
